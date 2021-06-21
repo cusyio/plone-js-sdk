@@ -1,0 +1,55 @@
+{
+  "name": "plone-client-js",
+  "version": "1.0.0-beta1",
+  "description": "JavaScript client for Plone CMS",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "license": "MIT",
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "scripts": {
+    "lint": "eslint --ext .js src test",
+    "test": "jest",
+    "compile": "rm -rf dist && mkdir dist && node build.js",
+    "prepublish": "yarn compile",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/it-spirit/plone-client-js.git"
+  },
+  "keywords": [
+    "Plone",
+    "client"
+  ],
+  "author": "Thomas Massmann",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "ufo": "^0.7.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "babel-eslint": "^10.1.0",
+    "esbuild": "^0.12.9",
+    "eslint": "^7.29.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^6.0.0",
+    "jest": "^27.0.4",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
