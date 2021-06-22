@@ -40,7 +40,14 @@ class PloneClient {
 
     // Add api options as query params
     path = withQuery(path, options);
-    return await this.$http.get(path);
+    try {
+      const result = await this.$http.get(path);
+      return result?.data;
+    } catch (e) {
+      return {
+        error: e,
+      };
+    }
   }
 
   /**
@@ -79,15 +86,15 @@ class PloneClient {
       options.items = [];
     }
     options.items = options.items.concat(
-      response?.data?.items.map((item) => {
+      response?.items.map((item) => {
         // TODO: replace all URLs starting with baseURL
         item['@id'] = item['@id'].replace(this.baseURL, '') || '/';
         return item;
       })
     );
 
-    if (response.data.batching && response.data.batching.next) {
-      options.batchURL = response.data.batching.next;
+    if (response.batching && response.batching.next) {
+      options.batchURL = response.batching.next;
       return await this.fetchItems(path, queryParams, options);
     }
     return [...new Set(options.items)];
