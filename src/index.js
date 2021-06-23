@@ -57,8 +57,11 @@ class PloneClient {
    * @returns A list of search results
    */
   async search(path = '', searchOptions = {}) {
-    // Create a valid url
-    const url = joinURL(path, '@search');
+    let url = path;
+    if (!url.endsWith('@search')) {
+      // Ensure the @search endpoint is used.
+      url = joinURL(path, '@search');
+    }
     return await this.query(url, searchOptions);
   }
 
