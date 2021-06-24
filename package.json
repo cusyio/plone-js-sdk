@@ -1,6 +1,6 @@
 {
   "name": "@it-spirit/plone-js",
-  "version": "1.0.0-beta2",
+  "version": "1.0.0-beta3",
   "description": "JavaScript client for Plone CMS",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
