@@ -1,5 +1,5 @@
 {
-  "name": "@it-spirit/plone-js",
+  "name": "@cusy/plone-js",
   "version": "1.0.0-beta3",
   "private": false,
   "description": "JavaScript client for Plone CMS",
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/it-spirit/plone-js-sdk.git"
+    "url": "git+https://github.com/cusyio/plone-js-sdk.git"
   },
   "keywords": [
     "Plone",
