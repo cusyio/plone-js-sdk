@@ -1,0 +1,11 @@
+{
+  "title": "Plone JS SDK",
+  "url": "https://cusyio.github.io/plone-js-sdk/",
+  "logo": {
+    "light": "/plone-js-sdk/logo-light.svg",
+    "dark": "/plone-js-sdk/logo-dark.svg"
+  },
+  "github": "cusyio/plone-js-sdk",
+  "twitter": "cusyio",
+  "defaultBranch": "main"
+}
