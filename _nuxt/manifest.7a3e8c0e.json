@@ -1,0 +1,54 @@
+{
+  "name": "Plone JS SDK",
+  "short_name": "@cusy/plone-js-docs",
+  "description": "## Setup",
+  "icons": [
+    {
+      "src": "/plone-js-sdk/_nuxt/icons/icon_64x64.4f5ab9.png",
+      "sizes": "64x64",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/plone-js-sdk/_nuxt/icons/icon_120x120.4f5ab9.png",
+      "sizes": "120x120",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/plone-js-sdk/_nuxt/icons/icon_144x144.4f5ab9.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/plone-js-sdk/_nuxt/icons/icon_152x152.4f5ab9.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/plone-js-sdk/_nuxt/icons/icon_192x192.4f5ab9.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/plone-js-sdk/_nuxt/icons/icon_384x384.4f5ab9.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/plone-js-sdk/_nuxt/icons/icon_512x512.4f5ab9.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/plone-js-sdk/?standalone=true",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0095D3",
+  "lang": "en"
+}
