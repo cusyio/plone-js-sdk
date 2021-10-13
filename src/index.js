@@ -8,9 +8,10 @@ class PloneClient {
   /**
    * Create a new Plone client.
    *
-   * @param {string} url The Plone backend url to use.
+   * @param {String} url The Plone backend url to use.
+   * @param {Array} options Additional options to configure Axios.
    */
-  constructor(url) {
+  constructor(url, options = {}) {
     this.baseURL = url;
 
     // Create a new axios http client.
@@ -22,6 +23,7 @@ class PloneClient {
         'Content-Type': 'application/json',
       },
       timeout: 20000,
+      ...options,
     });
   }
 
