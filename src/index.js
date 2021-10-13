@@ -42,14 +42,8 @@ class PloneClient {
 
     // Add api options as query params
     path = withQuery(path, options);
-    try {
-      const result = await this.$http.get(path);
-      return result?.data;
-    } catch (e) {
-      return {
-        error: e,
-      };
-    }
+    const result = await this.$http.get(path);
+    return result?.data;
   }
 
   /**
