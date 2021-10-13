@@ -86,11 +86,7 @@ class PloneClient {
       options.items = [];
     }
     options.items = options.items.concat(
-      response?.items.map((item) => {
-        // TODO: replace all URLs starting with baseURL
-        item['@id'] = item['@id'].replace(this.baseURL, '') || '/';
-        return item;
-      })
+      this.makeAllURLsRelative(response?.items || [])
     );
 
     if (response.batching && response.batching.next) {
@@ -98,6 +94,23 @@ class PloneClient {
       return await this.fetchItems(path, queryParams, options);
     }
     return [...new Set(options.items)];
+  }
+
+  /**
+   * Ensure all URLs are relative to the base URL.
+   *
+   * @param {Array} items A list of Plone items.
+   * @returns A list of Plone items with relative URLs.
+   */
+  makeAllURLsRelative(items) {
+    if (!items) {
+      return;
+    }
+    return items.map((item) => {
+      // TODO: replace all URLs starting with baseURL
+      item['@id'] = item['@id'].replace(this.baseURL, '') || '/';
+      return item;
+    });
   }
 }
 
