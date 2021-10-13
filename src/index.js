@@ -72,13 +72,14 @@ class PloneClient {
   async fetchItems(path = '', queryParams = {}, options = {}) {
     let response;
 
+    const queryOptions = {
+      metadata_fields: 'modified',
+      ...queryParams,
+    };
+
     if (options?.batchURL) {
-      response = await this.query(options.batchURL);
+      response = await this.query(options.batchURL, queryOptions);
     } else {
-      const queryOptions = {
-        metadata_fields: 'modified',
-        ...queryParams,
-      };
       response = await this.search(path, queryOptions);
     }
     if (!options?.items) {
