@@ -30,6 +30,12 @@ function customExponentialDelay(retryNumber = 0) {
   return delay + randomSum;
 }
 
+/**
+ * Check if the request to the Plone backend should be retried.
+ *
+ * @param {object} error The error information from the request.
+ * @returns {boolean} Whether or not the request should be retried.
+ */
 function isPloneError(error) {
   /**
    * Those errors can occur when clients close the connection.
@@ -130,7 +136,7 @@ class PloneClient {
    * @param {string} path The relative path to search within.
    * @param {object} query API query options.
    * @param {object} options Additional axios options for the request.
-   * @returns The raw API response in JSON format.
+   * @returns {string} The raw API response in JSON format.
    */
   async query(path, query = {}, options = {}) {
     path = normalizeURL(path);
@@ -142,11 +148,12 @@ class PloneClient {
   }
 
   /**
-   * Search for content.
+   * Search for content using the built-in `search` endpoint.
+   *
    * @param {string} path The relative path to search within.
-   * @param {object} query Search query options.
+   * @param {object} query API query options.
    * @param {object} options Additional axios options for the request.
-   * @returns A list of search results
+   * @returns {array} A list of search results
    */
   async search(path = '', query = {}, options = {}) {
     let url = path;
@@ -164,7 +171,7 @@ class PloneClient {
    * @param {object} query Optional REST-API and query params for the search.
    * @param {object} batch Optional batch information.
    * @param {object} options Additional axios options for the request.
-   * @returns List of URLs.
+   * @returns {array} List of items.
    */
   async fetchItems(path = '', query = {}, batch = {}, options = {}) {
     let response;
@@ -199,6 +206,7 @@ class PloneClient {
    * @param {string} path The relative path to the collection item.
    * @param {object} query API query options.
    * @param {object} options Additional axios options for the request.
+   * @returns {object} The collection with all resolved result items.
    */
   async fetchCollection(path = '', query = {}, options = {}) {
     const response = await this.query(path, query, options);
@@ -223,8 +231,8 @@ class PloneClient {
   /**
    * Ensure all URLs are relative to the base URL.
    *
-   * @param {Array} items A list of Plone items.
-   * @returns A list of Plone items with relative URLs.
+   * @param {array} items A list of Plone items.
+   * @returns {array} A list of Plone items with relative URLs.
    */
   makeAllURLsRelative(items) {
     if (!items) {
