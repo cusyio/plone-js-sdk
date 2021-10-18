@@ -10,11 +10,13 @@
     "node": ">=10.0.0"
   },
   "scripts": {
+    "compile": "rm -rf dist && mkdir dist && node build.js",
     "lint": "eslint --ext .js src test",
     "test": "jest",
-    "compile": "rm -rf dist && mkdir dist && node build.js",
+    "precommit": "lint-staged",
     "prepublish": "yarn compile",
-    "precommit": "lint-staged"
+    "preversion": "yarn test",
+    "postversion": "git push --tags && yarn publish . --tag $npm_package_version && git push && echo \"Successfully released version $npm_package_version!\""
   },
   "lint-staged": {
     "*.js": [
