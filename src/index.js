@@ -197,15 +197,16 @@ class PloneClient {
    * Get a collection with all it’s dynamic items.
    *
    * @param {string} path The relative path to the collection item.
+   * @param {object} query API query options.
    * @param {object} options Additional axios options for the request.
    */
-  async fetchCollection(path = '', options = {}) {
-    const response = await this.query(path);
+  async fetchCollection(path = '', query = {}, options = {}) {
+    const response = await this.query(path, query, options);
     let items;
     if (response?.batching) {
       items = await this.fetchItems(
         path,
-        {},
+        query,
         {
           batchURL: response.batching.next,
           items: response?.items || [],
