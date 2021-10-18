@@ -1,6 +1,6 @@
 {
   "name": "@cusy/plone-js",
-  "version": "1.0.0-beta4",
+  "version": "1.0.0",
   "private": false,
   "description": "JavaScript client for Plone CMS",
   "main": "dist/index.js",
