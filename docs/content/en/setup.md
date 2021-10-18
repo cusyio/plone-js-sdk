@@ -7,7 +7,7 @@ category: 'Getting started'
 
 ## Installation
 
-Add `@cusy/plone-js` dependency to your project:
+To install the Plone JS SDK add `@cusy/plone-js` as a dependency to your project:
 
 <code-group>
   <code-block label="Yarn" active>
@@ -26,24 +26,12 @@ npm install @cusy/plone-js
   </code-block>
 </code-group>
 
-You can now import  `@cusy/plone-js` into your JavaScript module and instantiate a new Plone client:
+The Plone Restful-API is available by default in Plone version 5 or newer, but not activated.
+Please refer to your Plone manual on how to activate the add-on.
 
-```js
-import PloneClient from '@cusy/plone-js';
+Some features may require the installation of additional Plone Add-ons.
+Cusy provides several add-ons which extend or patch the Restful-API, e.g.:
 
-const client = new PloneClient('http://localhost:8080/Plone');
-
-// Fetch Plone content from the API
-const getContent = async (path = '', options = {}) => {
-  const searchOptions = {
-    expand: 'breadcrumbs,translations,contentinfo',
-    ...options,
-  };
-
-  try {
-    return await client.query(path, searchOptions);
-  } catch {
-    return {};
-  }
-};
-```
+- [cusy.restapi.patches](https://github.com/cusyio/cusy.restapi.patches): Patches and fixes for plone.restapi which are not yet released.
+- [cusy.restapi.info](https://github.com/cusyio/cusy.restapi.info): Site and content info for plone.restapi.
+- [cusy.restapi.easyform](https://github.com/cusyio/cusy.restapi.easyform): EasyForm integration for plone.restapi.
