@@ -22,11 +22,11 @@ const defaultCache = new LRUCache({ maxAge: CACHE_TIME });
  *
  * @param {number} retryNumber The current retry.
  * @param {object} error The error object.
- * @returns A new delay in ms for the next request.
+ * @returns {number} A new delay in ms for the next request.
  */
-function customExponentialDelay(retryNumber = 0, error) {
+function customExponentialDelay(retryNumber = 0) {
   const delay = Math.pow(2, retryNumber) * 100;
-  const randomSum = delay * 0.2 * Math.random();
+  const randomSum = delay * 0.8 * Math.random();
   return delay + randomSum;
 }
 
