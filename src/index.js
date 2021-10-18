@@ -128,66 +128,69 @@ class PloneClient {
    * We do some URL normalization and then call the api.
    *
    * @param {string} path The relative path to search within.
-   * @param {object} options API options.
+   * @param {object} query API query options.
+   * @param {object} options Additional axios options for the request.
    * @returns The raw API response in JSON format.
    */
-  async query(path, options = {}) {
+  async query(path, query = {}, options = {}) {
     path = normalizeURL(path);
 
-    // Add api options as query params
-    path = withQuery(path, options);
-    const result = await this.$http.get(path);
+    // Add api query options as query params
+    path = withQuery(path, query);
+    const result = await this.$http.get(path, options);
     return result?.data;
   }
 
   /**
    * Search for content.
    * @param {string} path The relative path to search within.
-   * @param {object} searchOptions Search options.
+   * @param {object} query Search query options.
+   * @param {object} options Additional axios options for the request.
    * @returns A list of search results
    */
-  async search(path = '', searchOptions = {}) {
+  async search(path = '', query = {}, options = {}) {
     let url = path;
     if (!url.endsWith('@search')) {
       // Ensure the @search endpoint is used.
       url = joinURL(path, '@search');
     }
-    return await this.query(url, searchOptions);
+    return await this.query(url, query, options);
   }
 
   /**
    * Get all available Plone content.
    *
    * @param {string} path The relative path to the API endpoint to use as base.
-   * @param {object} queryParams Optional REST-API and query params for the search.
-   * @param {object} options Optional batch URL for batched results.
+   * @param {object} query Optional REST-API and query params for the search.
+   * @param {object} batch Optional batch information.
+   * @param {object} options Additional axios options for the request.
    * @returns List of URLs.
    */
-  async fetchItems(path = '', queryParams = {}, options = {}) {
+  async fetchItems(path = '', query = {}, batch = {}, options = {}) {
     let response;
 
     const queryOptions = {
       metadata_fields: 'modified',
-      ...queryParams,
+      ...query,
     };
 
-    if (options?.batchURL) {
-      response = await this.query(options.batchURL, queryOptions);
+    if (batch?.batchURL) {
+      response = await this.query(batch.batchURL, queryOptions, options);
     } else {
-      response = await this.search(path, queryOptions);
+      response = await this.search(path, queryOptions, options);
     }
-    if (!options?.items) {
-      options.items = [];
+    if (!batch?.items) {
+      batch.items = [];
     }
-    options.items = options.items.concat(
+    batch.items = batch.items.concat(
       this.makeAllURLsRelative(response?.items || [])
     );
 
     if (response.batching && response.batching.next) {
-      options.batchURL = response.batching.next;
-      return await this.fetchItems(path, queryParams, options);
+      batch.batchURL = response.batching.next;
+      return await this.fetchItems(path, query, batch, options);
     }
-    return [...new Set(options.items)];
+    return [...new Set(batch.items)];
   }
 
   /**
