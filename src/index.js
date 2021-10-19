@@ -165,6 +165,24 @@ class PloneClient {
   }
 
   /**
+   * Search for content using the built-in `querystring-search` endpoint.
+   *
+   * @param {string} path The relative path to search within.
+   * @param {object} query API query options.
+   * @param {object} options Additional axios options for the request.
+   * @returns {object} A search result object with items.
+   */
+  async querystringSearch(path = '', query = {}, options = {}) {
+    let url = path;
+    if (!url.endsWith('@querystring-search')) {
+      // Ensure the @querystring-search endpoint is used.
+      url = joinURL(path, '@querystring-search');
+    }
+    const result = await this.$http.post(url, query, options);
+    return result?.data;
+  }
+
+  /**
    * Get all available Plone content.
    *
    * @param {string} path The relative path to the API endpoint to use as base.

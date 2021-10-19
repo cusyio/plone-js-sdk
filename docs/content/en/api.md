@@ -88,6 +88,48 @@ const results = await client.search('/', query);
 const newsItems = result.items;
 ```
 
+## `async querystringSearch()`
+
+Search for content using the built-in `querystring-search` endpoint.
+
+- **Arguments**:
+  - `path` (type: `string`) The relative path to search within.
+  - `query` (type: `object`) API query options.
+  - `options` (type: `object`) Additional axios options for the request.
+- **Returns**: `object` A search result object with items.
+
+<alert type="info">
+
+More information about the `querystring-search` endpoint is available at the [plone.restapi querystring-search documentation](https://plonerestapi.readthedocs.io/en/latest/querystringsearch.html).
+
+</alert>
+
+### Example: Get the next 5 upcoming events
+
+```js
+import PloneClient from '@cusy/plone-js';
+const client = new PloneClient('http://localhost:8080/Plone');
+const query = {
+  limit: 5,
+  query: [
+    {
+      i: 'portal_type',
+      o: 'plone.app.querystring.operation.selection.any',
+      v: ['Event'],
+    },
+    {
+      i: 'end',
+      o: 'plone.app.querystring.operation.date.afterToday',
+      v: '',
+    },
+  ],
+  sort_on: 'start',
+};
+
+const results = await client.querystringSearch('/', query);
+const events = result.items;
+```
+
 ## `async fetchItems()`
 
 Get all available Plone content.
