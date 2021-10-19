@@ -136,7 +136,7 @@ class PloneClient {
    * @param {string} path The relative path to search within.
    * @param {object} query API query options.
    * @param {object} options Additional axios options for the request.
-   * @returns {string} The raw API response in JSON format.
+   * @returns {object} A search result object.
    */
   async query(path, query = {}, options = {}) {
     path = normalizeURL(path);
@@ -153,7 +153,7 @@ class PloneClient {
    * @param {string} path The relative path to search within.
    * @param {object} query API query options.
    * @param {object} options Additional axios options for the request.
-   * @returns {array} A list of search results
+   * @returns {object} A search result object with items.
    */
   async search(path = '', query = {}, options = {}) {
     let url = path;

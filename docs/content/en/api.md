@@ -13,7 +13,7 @@ Query the Plone REST-API.
   - `path` (type: `string`) The relative path to search within.
   - `query` (type: `object`) API query options.
   - `options` (type: `object`) Additional axios options for the request.
-- **Returns**: `string` The raw API response in JSON format.
+- **Returns**: `object` A search result object.
 
 This is the base for all requests to the Plone REST-API.
 We do some URL normalization and then call the api.
@@ -55,7 +55,7 @@ Search for content using the built-in `search` endpoint.
   - `path` (type: `string`) The relative path to search within.
   - `query` (type: `object`) API query options.
   - `options` (type: `object`) Additional axios options for the request.
-- **Returns**: `string` The raw API response in JSON format.
+- **Returns**: `object` A search result object with items.
 
 <alert type="info">
 
