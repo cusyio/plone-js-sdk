@@ -4,6 +4,13 @@ export default theme({
   docs: {
     primaryColor: '#0095D3',
   },
+  hooks: {
+    render: {
+      route(url, result) {
+        result.html = result.html.replace(/<base [^>]*>/, '');
+      },
+    },
+  },
   loading: { color: '#0095D3' },
   pwa: {
     manifest: {
