@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.2.0 (unreleased)
+## 1.2.0 (2021-10-25)
 
 - Bugfix: Include initial items when fetching collection.
 - Increase initial timeout to 60 seconds.
