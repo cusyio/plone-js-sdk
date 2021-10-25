@@ -228,7 +228,7 @@ class PloneClient {
    */
   async fetchCollection(path = '', query = {}, options = {}) {
     const response = await this.query(path, query, options);
-    let items;
+    let items = response?.items;
     if (response?.batching) {
       items = await this.fetchItems(
         path,

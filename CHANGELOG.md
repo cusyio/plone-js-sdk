@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0 (unreleased)
+
+- Bugfix: Include initial items when fetching collection.
+
 ## 1.1.0 (2021-10-19)
 
 - Add `querystringSearch` to get results from @querystring-search endpoint.
