@@ -93,7 +93,8 @@ class PloneClient {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      timeout: 20000,
+      // 1 minute timeout might be necessary with Plone.
+      timeout: 60000,
       // The adapters will always be available.
       // You can configure if the caching adapter is enabled by default
       // using the `enableCaching` option.
