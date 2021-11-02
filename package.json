@@ -12,11 +12,9 @@
   "scripts": {
     "compile": "rm -rf dist && mkdir dist && node build.js",
     "lint": "eslint --ext .js src test",
-    "test": "jest",
     "precommit": "lint-staged",
-    "prepublish": "yarn compile",
-    "preversion": "yarn test",
-    "postversion": "git push --tags && yarn publish . && git push && echo \"Successfully released version $npm_package_version!\""
+    "release": "yarn test && yarn compile && standard-version && git push --follow-tags && yarn publish",
+    "test": "jest"
   },
   "lint-staged": {
     "*.js": [
@@ -37,6 +35,7 @@
     "axios": "^0.21.1",
     "axios-extensions": "^3.1.3",
     "axios-retry": "^3.2.0",
+    "standard-version": "^9.3.2",
     "ufo": "^0.7.5"
   },
   "devDependencies": {
