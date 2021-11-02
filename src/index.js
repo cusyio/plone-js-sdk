@@ -6,6 +6,7 @@ import {
 } from 'axios-extensions';
 import { joinURL, normalizeURL, withQuery } from 'ufo';
 import LRUCache from 'lru-cache';
+import pkg from '../package.json';
 
 /**
  * Cache time should be 5 minutes by default.
@@ -92,6 +93,7 @@ class PloneClient {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        'User-Agent': `${pkg.name}/${pkg.version}`,
       },
       // 1 minute timeout might be necessary with Plone.
       timeout: 60000,
