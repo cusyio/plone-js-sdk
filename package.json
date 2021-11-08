@@ -13,8 +13,13 @@
     "compile": "rm -rf dist && mkdir dist && node build.js",
     "lint": "eslint --ext .js src test",
     "precommit": "lint-staged",
-    "release": "yarn test && yarn compile && standard-version && git push --follow-tags && yarn publish",
+    "release": "yarn test && standard-version -a && git push --follow-tags && yarn publish",
     "test": "jest"
+  },
+  "standard-version": {
+    "scripts": {
+      "postchangelog": "yarn compile"
+    }
   },
   "lint-staged": {
     "*.js": [
