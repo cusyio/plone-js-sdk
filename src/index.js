@@ -66,6 +66,7 @@ const defaultOptions = {
   enableRetry: true,
   // Additional axios instance options.
   axiosOptions: {},
+  headers: {},
 };
 
 /**
@@ -92,6 +93,7 @@ class PloneClient {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        ...clientOptions.headers,
       },
       // 1 minute timeout might be necessary with Plone.
       timeout: 60000,
